@@ -1,0 +1,45 @@
+aside .left-sidebar {
+    width: 30vh;
+    background-color: #101932;
+    border-radius: 15px;
+    color: whitesmoke;
+    padding-left: 12px;
+    height: 81vh;
+    transition: ease-in 0.3s;
+}
+
+.left-sidebar h3 {
+
+    font-size: 15px;
+}
+
+.option-name {
+    display: flex;
+    align-items: center;
+    /*outline: 1px solid #2E354C;*/
+    padding: 1%;
+    border-radius: 4px;
+    margin-right: 10px;
+    gap: 5px;
+}
+ .left-sidebar .option a h3 {
+    outline: 1px solid #2E354C;
+    padding: 1%;
+    border-radius: 4px;
+    margin-right: 10px;
+} 
+
+
+.club-names {
+    margin-left: 0px;
+    margin-right: 25px;
+    border-radius: 10px;
+}
+
+.club-section {
+    background: #18243D;
+    border-radius: 7px;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

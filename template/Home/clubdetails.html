@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #080D26, #1F2233);
+            font-family: Arial, Helvetica, sans-serif;
+            color: aliceblue;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 70px);
+        }
+        aside .left-sidebar {
+    width: 30vh;
+    background-color: #101932;
+    border-radius: 15px;
+    color: whitesmoke;
+    padding-left: 12px;
+    height: 75vh;
+    transition: ease-in 0.3s;
+}
+
+.left-sidebar h3 {
+    font-size: 15px;
+}
+
+
+.option-name {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 10px;
+    gap: 5px;
+    transition: 0.3s ease-in;
+}
+
+.option-name:hover { 
+    margin-left: 0.5rem;
+    size: 30px;
+}
+
+.club-names {
+    margin-left: 0px;
+    margin-right: 25px;
+    border-radius: 10px;
+}
+
+.club-section h3{
+    background: #18243D;
+    border-radius: 7px;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left:1.5rem;
+    margin-bottom: 20px;
+}
+        .posts-section {
+            background-color:#18243D;
+            border-radius: 15px;
+            overflow-y: auto;
+        }
+        .post-title {
+            display: flex;
+            justify-content: center;
+        }
+        .post-body {
+            background-color: #2c3853;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            padding:30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 20px auto;
+            color:#ffffff;
+            overflow: hidden;
+        }
+
+        .post-body:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .c-name{
+            font-size:20px;
+            font-weight:bold;
+        }
+        
+
+        .verified-badge {
+            color: #00acee;
+            margin-left: 5px;
+        }
+
+        .post-date {
+            margin-left: auto;
+            font-size: 0.8rem;
+        
+        }
+
+        .post-content {
+            font-size: 1.25rem;
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside>
+            <div class="left-sidebar">
+                <div class="option">
+                    <a href="{% url 'forum' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            forum
+                        </span>
+                        <h3>Forum</h3>
+                    </a>
+                    <a href="{% url 'clubdetails' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                        <h3>Clubs</h3>
+                    </a>
+                    <div class="club-dropdown">
+                        <div class="club-names">
+                            <div class="club-section">
+                                <h3>Software & Hardware</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Research Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Math Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Programming Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Sports Club</h3>
+                            </div>
+                        </div>
+                    </div>    
+                    <a href="{% url 'resources' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        <h3>Resources</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- Posts Section -->
+        <div class="posts-section">
+            <div class="post-title">
+                <h2 style="font-weight: 700; font-size: xx-large;">
+                    Club Details
+                </h2>
+            </div>
+            {% for c in club %}
+            <div class="post-body">
+                <div class="post-content">
+                    <div class="c-name">
+                        <p>{{c.clubName}}</p>
+                    </div>
+                        <p>Total Members in {{c.clubName}}: {{c.members}}</p>
+                        <p>{{c.description}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}

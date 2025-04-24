@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      aside .left-sidebar {
+        width: 30vh;
+        background-color: #101932;
+        border-radius: 15px;
+        color: whitesmoke;
+        padding-left: 12px;
+        height: auto; /* Adjusted height to auto to fit all sections */
+        transition: ease-in 0.3s;
+      }
+
+      .left-sidebar h3 {
+        font-size: 15px;
+      }
+
+      .option-name {
+        display: flex;
+        align-items: center;
+        padding: 1%;
+        border-radius: 4px;
+        margin-right: 10px;
+        gap: 5px;
+        color: whitesmoke;
+      }
+
+      .left-sidebar .option a h3 {
+        outline: 1px solid #2e354c;
+        padding: 1%;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .club-names {
+        margin-left: 0px;
+        margin-right: 25px;
+        border-radius: 10px;
+      }
+
+      .club-section {
+        background: #18243d;
+        border-radius: 7px;
+        padding-left: 20px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+      .alumni-section {
+        background: #18243d;
+        border-radius: 7px;
+        padding-left: 20px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin-top: 20px;
+      }
+
+      .alumni-name {
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .alumni-details {
+        color: #ccc;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <div class="left-sidebar">
+        <div class="option">
+          <a href="#" class="option-name">
+            <span class="material-symbols-outlined"> forum </span>
+            <h3>Forum</h3>
+          </a>
+          <a href="" class="option-name">
+            <span class="material-symbols-outlined"> groups </span>
+            <h3>Clubs</h3>
+          </a>
+          <div class="club-dropdown">
+            <div class="club-names">
+              <div class="club-section">
+                <div>
+                  <h3>CSE</h3>
+                  <a href="#">
+                    <h4>Software and Hardware Club</h4>
+                  </a>
+                  <a href="#">
+                    <h4>Competitive Programming</h4>
+                  </a>
+                  <a href="#">
+                    <h4>Robotics</h4>
+                  </a>
+                </div>
+              </div>
+              <div class="club-section">
+                <h3>EEE</h3>
+                <a href="#">
+                  <h4>MSI Lab</h4>
+                </a>
+                <a href="#">
+                  <h4>Mathematics</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="option-name">
+            <span class="material-symbols-outlined"> docs </span>
+            <h3>Resources</h3>
+          </a>
+
+          <!-- Alumni Section Added Here -->
+          <a href="#" class="option-name">
+            <span class="material-symbols-outlined"> school </span>
+            <h3>Alumni</h3>
+          </a>
+
+        </div>
+      </div>
+    </aside>
+  </body>
+</html>

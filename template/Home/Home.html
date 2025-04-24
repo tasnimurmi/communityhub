@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <aside>
+            <div class="left-sidebar">
+                <div class="option">
+                    <a href="{% url 'forum' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            forum
+                        </span>
+                        <h3>Forum</h3>
+                    </a>
+                    <a href="{% url 'clubdetails' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                        <h3>Clubs</h3>
+                    </a>
+                    <div class="club-dropdown">
+                        <div class="club-names">
+                            <div class="club-section">
+                                <h3>Software & Hardware</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Research Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Math Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Programming Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Sports Club</h3>
+                            </div>
+                        </div>
+                    </div>    
+                    <a href="{% url 'resources' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        <h3>Resources</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <!-- Posts Section -->
+    <div class="posts-section">
+        {% for p in post %}
+        <div class="post-body">
+            <div class="post-header">
+                {% if p.user.profile.image and p.user.profile.image.url %}
+                    <img src="{{ p.user.profile.image.url }}" alt="Profile Picture" class="profile-pic">
+                {% else %}
+                 <!-- Fallback to a default image -->
+                 <img src="/media/profile_pictures/default.jpg" alt="Default Profile Picture" class="profile-pic">
+                {% endif %}
+                <div class="user-info">
+                    <h4>{{ p.user }}<span class="verified-badge">✔️</span></h4>
+                </div>
+
+                <div class="button">
+                    <div class="post-date">
+                        {{ p.timestamp }}
+                    </div>
+                    {% if request.user == p.user %}
+                        <a href="{% url 'update_post' p.id %}" class="post-btn">Edit Post</a>
+                        <a href="{% url 'delete_post' p.id %}" class="post-btn">Delete Post</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="post-content">
+                <p>{{ p.description }}</p>
+                <div class="post-images">
+                    {% if p.image %}
+                        <img src="{{ p.image.url }}" class="main-image">
+                    {% endif %}
+                </div>
+            </div>
+
+     <!-- Like Button -->
+    <div class="like-section">
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{ p.id }}">
+            <button type="submit" name="like_post" class="like-btn">
+                {% if user in p.likes.all %}
+                    ❤️ Unlike
+                {% else %}
+                    🤍 Like
+                {% endif %}
+            </button>
+        </form>
+        <span>{{ p.total_likes }} Likes</span>
+    </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h5>Comments:</h5>
+                <ul>
+                    {% for comment in p.comment_set.all %}
+                        <li>
+                            <strong>{{ comment.user.username }}</strong>: {{ comment.contents }}
+                            <br><small>{{ comment.timestamp }}</small>
+                        </li>
+                    {% empty %}
+                        <li>No comments yet. Be the first to comment!</li>
+                    {% endfor %}
+                </ul>
+                
+                <!-- Add a Comment -->
+                <form method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ p.id }}">
+                    <textarea name="contents" placeholder="Write a comment..." required></textarea>
+                    <button type="submit" class="comment-btn">Comment</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

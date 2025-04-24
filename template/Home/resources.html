@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/resources.css' %}">
+<link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <aside>
+            <div class="left-sidebar">
+                <div class="option">
+                    <a href="{% url 'forum' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            forum
+                        </span>
+                        <h3>Forum</h3>
+                    </a>
+                    <a href="{% url 'clubdetails' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                        <h3>Clubs</h3>
+                    </a>
+                    <div class="club-dropdown">
+                        <div class="club-names">
+                            <div class="club-section">
+                                <h3>Software & Hardware</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Research Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Math Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Programming Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Sports Club</h3>
+                            </div>
+                        </div>
+                    </div>    
+                    <a href="{% url 'resources' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        <h3>Resources</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <!-- Resource Main -->
+        <div class="main-body">
+            <div class="main-title">
+                <h2 style="font-weight: 700; font-size: xx-large;">
+                    Resources
+                </h2>
+            </div>
+            <br>
+            <div class="secondary-title">
+                <div class="res-name">
+                    <h3>Name</h3>
+                </div>
+                <div class="res-date">
+                    <h3>Posted Day</h3>
+                </div>
+                <div class="res-type">
+                    <h3>Post Type</h3>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="posting-section">
+                {% for r in resource %}
+                <div class="post-resource">
+                    <div class="resource-name">
+                        <span class="material-symbols-outlined">
+                            picture_as_pdf
+                        </span>
+                        {{ r.user }}
+                    </div>
+                    <div class="resource-date">{{ r.dateuploaded }}</div>
+                    <div class="resource-file">{{ r.file_type }}</div>
+                    <div class="side-button">
+                        <a href="{{ r.resource.url }}" download>
+                            <span class="material-symbols-outlined">
+                                download
+                            </span>
+                        </a> 
+                        {% if request.user == r.user %}
+                        <a href="{% url 'update_resource' r.id %}">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                        </a>
+                        <a href="{% url 'delete_resource' r.id %}">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- End of resource  -->
+        <div class="upload">
+            <a href="{% url 'upload_resource' %}" class="post-btn">Upload File</a>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

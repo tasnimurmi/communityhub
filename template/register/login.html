@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet" />
+    <style>
+        *{
+    color: aliceblue;
+    font-family: "Gilroy", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #0b0e20; /* Fallback color */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Optional: Keeps the image fixed during scrolling */
+}
+.background {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Places it behind other content */
+    overflow: hidden;
+}
+
+.background-image img {
+    width: 100%; /* Makes the image width match the screen width */
+    height: 100%; /* Makes the image height match the screen height */
+    object-fit: cover; /* Ensures the image covers the entire screen without distortion */
+}
+
+.foreground {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0%; /* Position from the top of the screen */
+    left: 0%; /* Position from the left of the screen */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+.foreground-img img{
+    height: 750px;
+    width: auto;
+    transition: all ease-in-out 0.5s;
+}
+
+.foreground-img img:hover{
+    height: 800px;
+    width: auto;
+}
+
+.right-section {
+    /* background-color: brown; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%; 
+    padding-right: 10rem;
+    margin-top: 3.6rem;
+    position: relative; /* Ensure these are in the stacking context */
+    z-index: 2; 
+}
+.form-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+    width: 100%;
+    
+}
+
+.message h1 {
+    margin-bottom: 10px;
+    font-size: 1.75em;
+    text-align: center;
+    color: #E2E2E2;
+    margin-bottom: 2.5rem;
+}
+
+.message p {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+form input {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* White background with 20% opacity */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    color: #97A5B7;
+    /* Ensure text is visible on a darker background */
+    font-size: 1em;
+}
+
+form input::placeholder {
+    color: #ccc;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+}
+
+.submit-btn {
+    background-color: #1768be;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.submit-btn:hover {
+    background-color: #0e4887;
+}
+
+form p {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+form p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+form p a:hover {
+    text-decoration: underline;
+}
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="background-image">
+            <img src="media/login_image/Login_BG.png" alt="">
+        </div>
+    </div>
+    <div class="foreground">
+        <div class="foreground-img">
+            <img src="media/login_image/group.png" alt="">
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="form-container">
+            <div class="message">
+                <h1>Welcome!</h1>
+            </div>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Your full name" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Your email address">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Your password">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p>Don't have an account? <a href="{% url 'signup' %}">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Uap Connects{% endblock %}</title>
+
+    <!-- Base Styles -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #060b26, #2a2c39);
+        color: #ffffff;
+      }
+    </style>
+
+    <!-- Additional CSS -->
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+    {% block extra_css %} {% endblock %}
+  </head>
+  <body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Content Block -->
+    <main>{% block content %} {% endblock %}</main>
+
+    <!-- Optional Footer -->
+    {% block footer %}
+    <footer
+      style="text-align: center; padding: 10px; color: #bbb; font-size: 0.9rem"
+    >
+    </footer>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Design</title>
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #080D26, #1F2233);
+            font-family: Arial, Helvetica, sans-serif;
+            color: aliceblue;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 70px);
+        }
+
+        aside .left-sidebar {
+    width: 30vh;
+    background-color: #101932;
+    border-radius: 15px;
+    color: whitesmoke;
+    padding-left: 12px;
+    height: 75vh;
+    transition: ease-in 0.3s;
+}
+
+.left-sidebar h3 {
+    font-size: 15px;
+}
+
+
+.option-name {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 10px;
+    gap: 5px;
+    transition: 0.3s ease-in;
+}
+
+.option-name:hover { 
+    margin-left: 0.5rem;
+    size: 30px;
+}
+
+.club-names {
+    margin-left: 0px;
+    margin-right: 25px;
+    border-radius: 10px;
+}
+
+.club-section h3{
+    background: #18243D;
+    border-radius: 7px;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left:1.5rem;
+    margin-bottom: 20px;
+}
+
+.post-section {
+        width: 70%;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+.post-section .create-post {
+        background-color:#18243D;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+} 
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 0.8rem;
+}
+
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2a3140;
+}
+.post-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
+    color: #4b4a4a;   
+}
+.post-input:hover {
+    background-color: #c3c3c3; /* Slight hover effect */
+}
+
+.posts {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.post-btn {
+    display: inline-block;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+}
+
+.post-btn .button-link {
+    width: 100%;
+    text-decoration: none;
+    color: inherit; 
+    display: block; 
+}
+.post-btn:hover{
+    background-color:rgb(40, 92, 147);
+}
+.navbar .section{
+            gap:64px;
+            margin-left:5rem;
+ }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .posts-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside>
+            <div class="left-sidebar">
+                <div class="option">
+                    <a href="{% url 'forum' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            forum
+                        </span>
+                        <h3>Forum</h3>
+                    </a>
+                    <a href="{% url 'clubdetails' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                        <h3>Clubs</h3>
+                    </a>
+                    <div class="club-dropdown">
+                        <div class="club-names">
+                            <div class="club-section">
+                                <h3>Software & Hardware</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Research Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Math Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Programming Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Sports Club</h3>
+                            </div>
+                        </div>
+                    </div>    
+                    <a href="{% url 'resources' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        <h3>Resources</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Create-posts Section -->
+        <div class="post-section">
+            <div class="create-post">
+                <div class="post-header">
+                    {% if request.user.profile.image %}
+                        <img src="{{ request.user.profile.image.url }}" alt="Profile" class="profile-pic">
+                    {% else %}
+                    <img src="/media/profile_pictures/default.jpg" alt="Default Profile" class="profile-pic">
+                    {% endif %}
+                    <a href="{% url 'upload_post' %}" class="post-input">What's on your mind, {{request.user}}</a>
+                </div>
+                <div class="posts"><a href="{% url 'upload_query' %}" class="post-btn">Forum Post</a>
+                    <a href="{% url 'upload_post' %}" class="post-btn">Create Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}

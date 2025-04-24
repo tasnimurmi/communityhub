@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(45deg, #080d26, #1f2233);
+      font-family: Arial, Helvetica, sans-serif;
+      color: aliceblue;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .alumni-section {
+      background: #18243d;
+      border-radius: 10px;
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      overflow-y: auto;
+    }
+
+    .alumni-section h3 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      color: #ffffff;
+      text-align: center;
+      border-bottom: 2px solid #ffffff33;
+      padding-bottom: 10px;
+    }
+
+    .alumni-card {
+      background-color: #2e3b54;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .alumni-card:hover {
+      transform: scale(1.03);
+    }
+
+    .alumni-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .alumni-details p {
+      margin: 6px 0;
+    }
+
+    .no-alumni-message {
+      color: #ccc;
+      font-size: 18px;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      .alumni-section {
+        padding: 20px;
+      }
+
+      .alumni-card {
+        padding: 15px;
+      }
+    }
+  </style>
+
+  <div class="page-wrapper">
+    <div class="alumni-section">
+      <h3>Alumni</h3>
+      {% for alumni in alumni_list %}
+        <div class="alumni-card">
+          <div class="alumni-name">{{ alumni.name }}</div>
+          <div class="alumni-details">
+            <p><strong>Graduated:</strong> {{ alumni.graduation_year }}</p>
+            <p><strong>Current Location:</strong> {{ alumni.current_location }}</p>
+            <p><strong>Current Job:</strong> {{ alumni.current_job }}</p>
+          </div>
+        </div>
+      {% empty %}
+        <p class="no-alumni-message">No alumni data available.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

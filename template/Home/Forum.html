@@ -1,0 +1,490 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Design</title>
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(90deg, #080C26, #202334);
+            font-family: Arial, Helvetica, sans-serif;
+            color: aliceblue;
+        }
+
+        .divider {
+            border-top: 1px solid #6e6e6e;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+
+        }
+
+        aside .left-sidebar {
+            width: 30vh;
+            background-color: #101932;
+            border-radius: 15px;
+            color: whitesmoke;
+            padding-left: 12px;
+            height: 75vh;
+            transition: ease-in 0.3s;
+        }
+
+        .left-sidebar h3 {
+            font-size: 15px;
+        }
+
+        .left-sidebar span {
+            color: aliceblue;
+        }
+
+
+        .option-name {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 10px;
+            gap: 5px;
+            transition: 0.3s ease-in;
+        }
+
+        .option-name:hover {
+            margin-left: 0.5rem;
+            size: 30px;
+        }
+
+        .club-names {
+            margin-left: 0px;
+            margin-right: 25px;
+            border-radius: 10px;
+        }
+
+        .club-section h3 {
+            background: #18243D;
+            border-radius: 7px;
+            padding-left: 20px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin-left: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .posts-section {
+            width: 60%;
+            border-radius: 15px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .post-body {
+            margin-bottom: 5px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .post-body:hover {
+            background: linear-gradient(to right, #101832, #20263A);
+            border-radius: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: ease-in 0.3s;
+        }
+
+
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2a3140;
+        }
+
+        .user-info {
+            margin-left: 8px;
+        }
+
+        .user-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .post-date {
+            font-size: small;
+            color: #b8b8b8;
+            margin-left: 12px;
+        }
+
+        .post-content {
+            font-size: 1rem;
+        }
+
+        .post-content p {
+            color: #b8b8b8;
+            margin-bottom: 13px;
+        }
+
+        .post-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .main-image {
+            width: 60%;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .small-images img {
+            width: 45%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .symbols {
+            color: #aaaaaa;
+            display: flex;
+            gap: 10px;
+        }
+
+        .material-symbols-outlined {
+            font-size: 24px;
+            color: #aaa;
+            transition: color 0.3s ease;
+        }
+
+        .post-body {
+            margin-bottom: 5px;
+            padding: 15px;
+            color: #ffffff;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .post-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #101832, #20263A);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .post-body:hover::before {
+            opacity: 1;
+        }
+
+        .post-body:hover {
+            cursor: pointer;
+        }
+
+
+        .forum-bottom {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-btn {
+            display: inline-block;
+            text-align: center;
+            margin-left: auto;
+            background-color: #39758f;
+            color: white;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .post-btn .button-link {
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .post-btn:hover {
+            background-color: rgb(41, 85, 133);
+        }
+
+        .navbar .section {
+            gap: 64px;
+            margin-left: 5rem;
+        }
+
+        .comments-section {
+            background-color: #2c3e5049;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .comments-section h5 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .comments-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .comments-section li {
+            margin-bottom: 15px;
+            color: white;
+            border-bottom: 1px solid #34495e;
+            /* Dark border between comments */
+            padding-bottom: 10px;
+        }
+
+        .comments-section li strong {
+            color: #3498db;
+            /* Light blue for usernames */
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #34495e;
+            /* Dark border */
+            border-radius: 4px;
+            background-color: #34495e;
+            color: white;
+            margin-top: 10px;
+            resize: vertical;
+        }
+
+        .comment-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #458ba9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .comment-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .upvote-button {
+            display: flex;
+            align-items: center;
+        }
+
+        .upvote-button:hover .material-symbols-outlined {
+            color: rgba(255, 76, 53, 0.973);
+            transition: ease-in 0.2s;
+            cursor: pointer;
+        }
+
+        .downvote-button {
+            display: flex;
+            align-items: center;
+        }
+
+        .downvote-button:hover .material-symbols-outlined {
+            color: rgba(182, 94, 255, 0.973);
+            transition: ease-in 0.2s;
+            cursor: pointer;
+        }
+
+        .chat-button:hover .material-symbols-outlined {
+            color: whitesmoke;
+            transition: ease-in 0.2s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside>
+            <div class="left-sidebar">
+                <div class="option">
+                    <a href="{% url 'forum' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            forum
+                        </span>
+                        <h3>Forum</h3>
+                    </a>
+                    <a href="{% url 'clubdetails' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            groups
+                        </span>
+                        <h3>Clubs</h3>
+                    </a>
+                    <div class="club-dropdown">
+                        <div class="club-names">
+                            <div class="club-section">
+                                <h3>Software & Hardware</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Research Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Math Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Programming Club</h3>
+                            </div>
+                            <div class="club-section">
+                                <h3>Sports Club</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'resources' %}" class="option-name">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        <h3>Resources</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Forum Section -->
+        <div class="posts-section">
+            {% for f in forum %}
+            <div class="post-body">
+                <div class="post-header">
+                    {% if f.user.profile.image and f.user.profile.image.url %}
+                    <img src="{{ f.user.profile.image.url }}" alt="Profile Picture" class="profile-pic">
+                    {% else %}
+                    <!-- Fallback to a default image -->
+                    <img src="/media/profile_pictures/default.jpg" alt="Default Profile Picture" class="profile-pic">
+                    {% endif %}
+                    <div class="user-info">
+                        {{f.user}}
+                    </div>
+                    <div class="post-date"> • {{f.time}} </div>
+                </div>
+                <div class="post-content">
+                    <h4>{{f.title}}</h4><br>
+                    <p>{{f.query}}</p>
+                </div>
+                <div class="forum-bottom">
+                    <div class="symbols">
+                        <form method="POST" action="{% url 'forum' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ f.id }}">
+                            <div class="upvote-button">
+                                <button type="submit" name="upvote" class="material-symbols-outlined"
+                                    style="background: none; border: none; cursor: pointer;">
+                                    arrow_upward
+                                </button>
+                                <span>{{ f.total_upvotes }}</span>
+                            </div>
+                        </form>
+
+                        <form method="POST" action="{% url 'forum' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ f.id }}">
+                            <div class="downvote-button">
+                                <button type="submit" name="downvote" class="material-symbols-outlined"
+                                    style="background: none; border: none; cursor: pointer;">
+                                    arrow_downward
+                                </button>
+                                <span>{{ f.total_downvotes }}</span>
+                            </div>
+                        </form>
+
+                        <div class="chat-button">
+                            <span class="material-symbols-outlined">
+                                chat
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div>{% if request.user == f.user %}
+                        <a href="{% url 'update_query' f.id %}" class="post-btn">Edit Post</a>
+                        <a href="{% url 'delete_query' f.id %}" class="post-btn">Delete Post</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h5>Comments:</h5>
+                    <ul>
+                        {% for comment in f.comment_set.all %}
+                        <li>
+                            <strong>{{ comment.user.username }}</strong>: {{ comment.contents }}
+                            <br><small>{{ comment.timestamp }}</small>
+                        </li>
+                        {% empty %}
+                        <li>No comments yet. Be the first to comment!</li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Add a Comment -->
+                    <form method="POST" action="{% url 'forum' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ f.id }}">
+                        <textarea name="contents" placeholder="Write a comment..." required></textarea>
+                        <button type="submit" class="comment-btn">Comment</button>
+                    </form>
+                </div>
+            </div>
+            <div class="divider"></div>
+            {% endfor %}
+        </div>
+        <!-- end of forum -->
+
+    </div>
+
+</body>
+{% endblock %}
+
+</html>
